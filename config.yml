@@ -2,16 +2,57 @@
 
 region: us-east-1
 metrics:
-- aws_namespace: "AWS/EC2"
-  aws_dimensions: [InstanceId]
+
+# EC2 Metrics
+- aws_namespace: AWS/EC2
+  aws_dimensions: [InstanceId, AutoScalingGroupName]
   aws_metric_name: CPUUtilization
   aws_statistics: [Average]
 
-- aws_namespace: "AWS/EC2"
-  aws_dimensions: [InstanceId]
+- aws_namespace: AWS/EC2
+  aws_dimensions: [InstanceId, AutoScalingGroupName]
   aws_metric_name: NetworkOut
   aws_statistics: [Average]
 
+- aws_namespace: AWS/EC2
+  aws_dimensions: [InstanceId, AutoScalingGroupName]
+  aws_metric_name: NetworkIn
+  aws_statistics: [Average]
+
+- aws_namespace: AWS/EC2
+  aws_dimensions: [InstanceId, AutoScalingGroupName]
+  aws_metric_name: DiskReadOps
+  aws_statistics: [Average]
+
+- aws_namespace: AWS/EC2
+  aws_dimensions: [InstanceId, AutoScalingGroupName]
+  aws_metric_name: DiskWriteOps
+  aws_statistics: [Average]
+
+- aws_namespace: AWS/EC2
+  aws_dimensions: [InstanceId, AutoScalingGroupName]
+  aws_metric_name: DiskReadBytes
+  aws_statistics: [Average]
+
+- aws_namespace: AWS/EC2
+  aws_dimensions: [InstanceId, AutoScalingGroupName]
+  aws_metric_name: DiskWriteBytes
+  aws_statistics: [Average]
+
+- aws_namespace: AWS/EC2
+  aws_dimensions: [InstanceId, AutoScalingGroupName]
+  aws_metric_name: StatusCheckFailed
+
+# Auto Scaling Metrics
+- aws_namespace: AWS/AutoScaling
+  aws_metric_name: GroupDesiredCapacity
+  aws_dimensions: [AutoScalingGroupName]
+
+- aws_namespace: AWS/AutoScaling
+  aws_metric_name: GroupInServiceInstances
+  aws_dimensions: [AutoScalingGroupName]
+
+# ELB Metrics
 - aws_namespace: AWS/ELB
   aws_metric_name: HealthyHostCount
   aws_dimensions: [AvailabilityZone, LoadBalancerName]
@@ -30,4 +71,92 @@ metrics:
 - aws_namespace: AWS/ELB
   aws_metric_name: Latency
   aws_dimensions: [AvailabilityZone, LoadBalancerName]
+  aws_statistics: [Average]
+
+# ALB Metrics
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: ActiveConnectionCount
+  aws_dimensions: [LoadBalancer]
+  aws_statistics: [Sum]
+
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: NewConnectionCount
+  aws_dimensions: [LoadBalancer]
+  aws_statistics: [Sum]
+
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: HealthyHostCount
+  aws_dimensions: [TargetGroup, AvailabilityZone, LoadBalancer]
+  aws_statistics: [Average, Minimum, Maximum]
+
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: UnHealthyHostCount
+  aws_dimensions: [TargetGroup, AvailabilityZone, LoadBalancer]
+  aws_statistics: [Average, Minimum, Maximum]
+
+- aws_namespace: AWS/ApplicationELB
+  aws_metric_name: RequestCount
+  aws_dimensions: [TargetGroup, AvailabilityZone, LoadBalancer]
+  aws_statistics: [Sum]
+
+# ECS Metrics
+- aws_namespace: AWS/ECS
+  aws_metric_name: CPUUtilization
+  aws_dimensions: [ClusterName, ServiceName]
+  aws_statistics: [Average, Minimum, Maximum, Sum]
+
+- aws_namespace: AWS/ECS
+  aws_metric_name: MemoryUtilization
+  aws_dimensions: [ClusterName, ServiceName]
+  aws_statistics: [Average, Minimum, Maximum, Sum]
+
+- aws_namespace: AWS/ECS
+  aws_metric_name: CPUReservation
+  aws_dimensions: [ClusterName, ServiceName]
+  aws_statistics: [Average, Minimum, Maximum, Sum]
+
+- aws_namespace: AWS/ECS
+  aws_metric_name: MemoryReservation
+  aws_dimensions: [ClusterName, ServiceName]
+  aws_statistics: [Average, Minimum, Maximum, Sum]
+
+# RDS Metrics
+- aws_namespace: AWS/RDS
+  aws_metric_name: CPUUtilization
+  aws_dimensions: [DBInstanceIdentifier]
+  aws_statistics: [Average]
+
+- aws_namespace: AWS/RDS
+  aws_metric_name: DatabaseConnections
+  aws_dimensions: [DBInstanceIdentifier]
+  aws_statistics: [Average]
+
+- aws_namespace: AWS/RDS
+  aws_metric_name: FreeableMemory
+  aws_dimensions: [DBInstanceIdentifier]
+  aws_statistics: [Average]
+
+- aws_namespace: AWS/RDS
+  aws_metric_name: FreeStorageSpace
+  aws_dimensions: [DBInstanceIdentifier]
+  aws_statistics: [Average]
+
+- aws_namespace: AWS/RDS
+  aws_metric_name: ReadIOPS
+  aws_dimensions: [DBInstanceIdentifier]
+  aws_statistics: [Average]
+
+- aws_namespace: AWS/RDS
+  aws_metric_name: ReadLatency
+  aws_dimensions: [DBInstanceIdentifier]
+  aws_statistics: [Average]
+
+- aws_namespace: AWS/RDS
+  aws_metric_name: WriteIOPS
+  aws_dimensions: [DBInstanceIdentifier]
+  aws_statistics: [Average]
+
+- aws_namespace: AWS/RDS
+  aws_metric_name: WriteLatency
+  aws_dimensions: [DBInstanceIdentifier]
   aws_statistics: [Average]
