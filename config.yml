@@ -1,56 +1,44 @@
 ---
-
 region: us-east-1
 metrics:
-
-# EC2 Metrics
 - aws_namespace: AWS/EC2
-  aws_dimensions: [InstanceId, AutoScalingGroupName]
   aws_metric_name: CPUUtilization
+  aws_dimensions: [InstanceId]
   aws_statistics: [Average]
 
 - aws_namespace: AWS/EC2
-  aws_dimensions: [InstanceId, AutoScalingGroupName]
   aws_metric_name: NetworkOut
+  aws_dimensions: [InstanceId]
   aws_statistics: [Average]
 
 - aws_namespace: AWS/EC2
-  aws_dimensions: [InstanceId, AutoScalingGroupName]
   aws_metric_name: NetworkIn
+  aws_dimensions: [InstanceId]
   aws_statistics: [Average]
 
 - aws_namespace: AWS/EC2
-  aws_dimensions: [InstanceId, AutoScalingGroupName]
   aws_metric_name: DiskReadOps
+  aws_dimensions: [InstanceId]
   aws_statistics: [Average]
 
 - aws_namespace: AWS/EC2
-  aws_dimensions: [InstanceId, AutoScalingGroupName]
   aws_metric_name: DiskWriteOps
+  aws_dimensions: [InstanceId]
   aws_statistics: [Average]
 
 - aws_namespace: AWS/EC2
-  aws_dimensions: [InstanceId, AutoScalingGroupName]
   aws_metric_name: DiskReadBytes
+  aws_dimensions: [InstanceId]
   aws_statistics: [Average]
 
 - aws_namespace: AWS/EC2
-  aws_dimensions: [InstanceId, AutoScalingGroupName]
   aws_metric_name: DiskWriteBytes
+  aws_dimensions: [InstanceId]
   aws_statistics: [Average]
 
 - aws_namespace: AWS/EC2
-  aws_dimensions: [InstanceId, AutoScalingGroupName]
   aws_metric_name: StatusCheckFailed
-
-# Auto Scaling Metrics
-- aws_namespace: AWS/AutoScaling
-  aws_metric_name: GroupDesiredCapacity
-  aws_dimensions: [AutoScalingGroupName]
-
-- aws_namespace: AWS/AutoScaling
-  aws_metric_name: GroupInServiceInstances
-  aws_dimensions: [AutoScalingGroupName]
+  aws_dimensions: [InstanceId]
 
 # ELB Metrics
 - aws_namespace: AWS/ELB
